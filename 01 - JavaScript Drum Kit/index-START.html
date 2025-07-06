@@ -7,7 +7,26 @@
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 <body>
+<script language="javascript">document.addEventListener('keydown', function(event) {
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+    const keyElement = document.querySelector(`.key[data-key="${event.keyCode}"]`); // Assuming you have visual key elements
 
+    if (!audio) return; // Stop the function from running if no audio is found
+
+    audio.currentTime = 0; // Rewind to the start
+    audio.play();
+
+    if (keyElement) {
+        keyElement.classList.add('playing'); // Add a CSS class for visual effect
+    }
+});
+
+// Optional: Remove the 'playing' class after a transition ends
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', function(event) {
+    if (event.propertyName !== 'transform') return; // Only listen for transform transitions
+    this.classList.remove('playing');
+}));</script>
 
   <div class="keys">
     <div data-key="65" class="key">
